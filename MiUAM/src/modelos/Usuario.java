@@ -66,6 +66,7 @@ public class Usuario {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+        
     }
    
     public boolean verificarUsuario(String user, String pw){

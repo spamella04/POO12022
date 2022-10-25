@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  * @author labc205
  */
 public class Login extends javax.swing.JFrame {
+    // public class login es una clase y la palabra extends se refiere a que la clase login hereda todo lo que tiene JFrame
     public dao.Usuario usuarios = new dao.Usuario();
     private int intentos = 0;
 
@@ -180,6 +181,7 @@ public class Login extends javax.swing.JFrame {
        if( usuarios.autenticarUsuario(user, pw)){
           // JOptionPane.showMessageDialog(this,"Ok");
           Menu mnu = new Menu();
+          mnu.setLista(usuarios);
           mnu.setVisible(true);
          // this.setVisible(false);
          dispose();
