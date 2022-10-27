@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 
@@ -65,6 +66,11 @@ public class Login extends javax.swing.JFrame {
                 jTfUsuarioActionPerformed(evt);
             }
         });
+        jTfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfUsuarioKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -72,6 +78,11 @@ public class Login extends javax.swing.JFrame {
 
         jTfPw.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTfPw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTfPw.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfPwKeyReleased(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 51)));
 
@@ -79,6 +90,11 @@ public class Login extends javax.swing.JFrame {
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
+            }
+        });
+        jBtnOk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBtnOkKeyReleased(evt);
             }
         });
 
@@ -170,7 +186,32 @@ public class Login extends javax.swing.JFrame {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-        String user = jTfUsuario.getText();
+        validar();
+    }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jBtnOkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBtnOkKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_jBtnOkKeyReleased
+
+    private void jTfPwKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfPwKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_jTfPwKeyReleased
+
+    private void jTfUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfUsuarioKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           jTfPw.requestFocus();
+        }
+    }//GEN-LAST:event_jTfUsuarioKeyReleased
+
+    private void validar(){
+         String user = jTfUsuario.getText();
         String pw  = jTfPw.getText();
        
         if(intentos == 3){
@@ -180,8 +221,8 @@ public class Login extends javax.swing.JFrame {
         }
        if( usuarios.autenticarUsuario(user, pw)){
           // JOptionPane.showMessageDialog(this,"Ok");
-          Menu mnu = new Menu();
-          mnu.setLista(usuarios);
+          Menu mnu = new Menu(usuarios);
+         // mnu.setLista(usuarios);
           mnu.setVisible(true);
          // this.setVisible(false);
          dispose();
@@ -189,8 +230,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Incorrecto");
              intentos++;
        }
-    }//GEN-LAST:event_jBtnOkActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
