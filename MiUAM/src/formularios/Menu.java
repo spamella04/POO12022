@@ -145,9 +145,14 @@ public class Menu extends javax.swing.JFrame {
     private void mnuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCerrarSesionActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(this, "Salir");
-       MiUAM uam = new MiUAM ();
-       uam.llenarUsuarios();
+     //  MiUAM uam = new MiUAM ();
+       //uam.llenarUsuarios();
+       //dispose();
+       Login login = new Login();
+       login.usuarios = lista;
+       login.setVisible(true);
        dispose();
+       
     }//GEN-LAST:event_mnuCerrarSesionActionPerformed
 
     private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
