@@ -6,13 +6,17 @@
 package dao;
 
 import java.util.ArrayList;
+import java.sql.*; // para usar resultset y statement
 
 /**
  *
  * @author labc205
- */
-public class Usuario {
-    
+ */ 
+// extends significa herencia
+public class Usuario extends Conexion{
+    private ResultSet rs;
+    private Statement st;
+    private Connection conn = this.obtenerConexion();
     private ArrayList<modelos.Usuario> lista = new ArrayList<>();
 
     public Usuario() {
@@ -79,6 +83,18 @@ public class Usuario {
         }
         return resultado;
         
+    }
+    
+    public void obtenerRegistros(){
+        String tSQL = "Select * from Usuario";
+        try{
+        rs = st.executeQuery(tSQL);
+        while(rs.next()){
+           this.agregar(rs.getString("userName"),rs.getString("pw"),rs.getString("nombres"),rs.getString("apellidos"),rs.getString("email"));
+        }  
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
       
  
