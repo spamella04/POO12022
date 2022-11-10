@@ -20,10 +20,10 @@ public class MiUAM {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       Usuario usuarios = new dao.Usuario();
-       usuarios.agregar("18020323", "123","Carlos","Cerda","carlos.cerda@uamv.edu.ni");
-       usuarios.agregar("2101522", "147","Carlos","Gurdian","carlos.gurdian@gmail.com");
-       usuarios.agregar("19014659", "132","Synthia","Gonzalez","spgonzalez@uamv.edu.ni");
+       dao.Usuario usuarios = new dao.Usuario();
+       //usuarios.agregar("18020323", "123","Carlos","Cerda","carlos.cerda@uamv.edu.ni");
+       //usuarios.agregar("2101522", "147","Carlos","Gurdian","carlos.gurdian@gmail.com");
+       //usuarios.agregar("19014659", "132","Synthia","Gonzalez","spgonzalez@uamv.edu.ni");
        
        Login login = new Login();
        login.usuarios = usuarios;
@@ -32,6 +32,7 @@ public class MiUAM {
 
        
     }
+    /*
     
     public void llenarUsuarios(){
         
@@ -45,5 +46,6 @@ public class MiUAM {
        login.setVisible(true);
 
     }
+*/
     
 }

@@ -14,12 +14,14 @@ import java.sql.*; // para usar resultset y statement
  */ 
 // extends significa herencia
 public class Usuario extends Conexion{
-    private ResultSet rs;
-    private Statement st;
     private Connection conn = this.obtenerConexion();
+    private PreparedStatement st = null;
+    // select * from usuario
+    private ResultSet rs; // organizan los datos de la consulta en filas y columnas
     private ArrayList<modelos.Usuario> lista = new ArrayList<>();
 
     public Usuario() {
+        this.obtenerRegistros();
     }
 
     public ArrayList<modelos.Usuario> getLista() {
@@ -88,14 +90,31 @@ public class Usuario extends Conexion{
     public void obtenerRegistros(){
         String tSQL = "Select * from Usuario";
         try{
-        rs = st.executeQuery(tSQL);
+        st = conn.prepareStatement(tSQL);
+        rs = st.executeQuery();
         while(rs.next()){
-           this.agregar(rs.getString("userName"),rs.getString("pw"),rs.getString("nombres"),rs.getString("apellidos"),rs.getString("email"));
+           this.agregar(rs.getString("userName"),rs.getString("Userpw"),rs.getString("Nombres"),rs.getString("Apellidos"),rs.getString("Email"));
         }  
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
     }
       
+    public boolean guardarRegistros(modelos.Usuario u){
+        boolean ok = false;
+        try{
+            String tSQL = "Insert into Usuario(" + "userName, UserPw, Nombres, Apellidos, Email)" + "values (?,?,?,?,?)";
+            st = conn.prepareStatement(tSQL);
+            st.setString(1, u.getUserName());
+            st.setString(2, u.getPw());
+            st.setString(3, u.getNombres());
+            st.setString(3, u.getApellidos());
+            st.setString(4, u.getEmail());
+           // if()
+        }catch(Exception ex){
+            
+        }
+        return ok;
+    }
  
 }
